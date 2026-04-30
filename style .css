@@ -1,0 +1,129 @@
+:root {
+    --bg-color: #0a0a0a;
+    --accent-color: #ffffff;
+    --text-muted: #888888;
+    --glass: rgba(255, 255, 255, 0.05);
+    --border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--accent-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 10%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--text-muted);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+}
+
+.hero p {
+    max-width: 500px;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+.btn:hover {
+    background: var(--accent-color);
+    color: var(--bg-color);
+}
+
+/* Bento Grid */
+.services {
+    padding: 100px 10%;
+}
+
+.bento-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 200px;
+    gap: 1.5rem;
+}
+
+.bento-item {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: transform 0.3s ease;
+}
+
+.bento-item:hover {
+    transform: translateY(-5px);
+}
+
+.tall { grid-row: span 2; }
+.wide { grid-column: span 2; }
+
+.bento-item h3 {
+    margin-bottom: 0.5rem;
+}
+
+.bento-item p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
