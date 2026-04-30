@@ -1,50 +1,50 @@
-// 1. Scroll Progress Bar
-window.onscroll = () => {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    document.querySelector(".progress-bar").style.width = scrolled + "%";
-};
-
-// 2. Custom Cursor Logic
-const cursor = document.querySelector('.cursor');
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
+// 1. Preloader Close
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.querySelector('.preloader').style.transform = 'translateY(-100%)';
+    }, 1800);
 });
 
-document.querySelectorAll('a, .project-card, .btn').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(6)');
-    el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+// 2. Menu Logic
+const menuTrigger = document.querySelector('.menu-trigger');
+const menuClose = document.querySelector('.menu-close');
+const overlay = document.querySelector('.menu-overlay');
+
+menuTrigger.onclick = () => overlay.classList.add('active');
+menuClose.onclick = () => overlay.classList.remove('active');
+
+// 3. Magnetic Button Effect
+const magneticElements = document.querySelectorAll('.magnetic');
+magneticElements.forEach(el => {
+    el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+    });
+    el.addEventListener('mouseleave', () => {
+        el.style.transform = `translate(0px, 0px)`;
+    });
 });
 
-// 3. Stat Counters
-const counters = document.querySelectorAll('.counter');
-const startCounters = () => {
-    counters.forEach(counter => {
-        const updateCount = () => {
-            const target = +counter.getAttribute('data-target');
-            const count = +counter.innerText;
-            const speed = target / 100;
-            if (count < target) {
-                counter.innerText = Math.ceil(count + speed);
-                setTimeout(updateCount, 20);
-            } else {
-                counter.innerText = target;
-            }
-        };
-        updateCount();
-    });
-};
+// 4. Grid Glow Follower
+document.querySelectorAll('.grid-item').forEach(item => {
+    item.onmousemove = (e) => {
+        const glow = item.querySelector('.grid-glow');
+        const rect = item.getBoundingClientRect();
+        glow.style.left = `${e.clientX - rect.left - 50}px`;
+        glow.style.top = `${e.clientY - rect.top - 50}px`;
+        glow.style.opacity = '0.3';
+    };
+});
 
-// 4. Intersection Observer for Reveal & Stats
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            if(entry.target.classList.contains('stats')) startCounters();
-        }
-    });
-}, { threshold: 0.2 });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+// 5. Native Smooth Scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.onclick = function(e) {
+        e.preventDefault();
+        overlay.classList.remove('active');
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    };
+});

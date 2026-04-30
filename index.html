@@ -3,97 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CORE STUDIO | Digital Architecture</title>
+    <title>CORE STUDIO | High-Fidelity Digital Architecture</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Progress Bar -->
+
+    <!-- 1. Preloader -->
+    <div class="preloader">
+        <div class="loader-content">
+            <span class="logo-load">CORE<span>STUDIO</span></span>
+            <div class="load-bar"></div>
+        </div>
+    </div>
+
+    <!-- 2. Full-Screen Menu -->
+    <div class="menu-overlay">
+        <div class="menu-close">CLOSE</div>
+        <nav class="overlay-nav">
+            <a href="#services" class="menu-link"><span>01</span> EXPERTISE</a>
+            <a href="#work" class="menu-link"><span>02</span> CASE STUDIES</a>
+            <a href="#tech" class="menu-link"><span>03</span> TECH STACK</a>
+            <a href="#contact" class="menu-link"><span>04</span> CONTACT</a>
+        </nav>
+    </div>
+
     <div class="progress-wrap"><div class="progress-bar"></div></div>
-    
     <div class="cursor"></div>
     <div class="blob"></div>
 
     <nav class="navbar">
         <div class="logo">CORE<span>STUDIO</span></div>
         <div class="nav-right">
-            <div class="status-pill"><span class="dot"></span> Available</div>
-            <ul class="nav-links">
-                <li><a href="#services">Expertise</a></li>
-                <li><a href="#work">Case Studies</a></li>
-                <li class="nav-cta"><a href="#contact">Contact</a></li>
-            </ul>
+            <div class="status-pill"><span class="dot"></span> Online</div>
+            <div class="menu-trigger">MENU</div>
         </div>
     </nav>
 
     <header class="hero">
         <div class="hero-content reveal">
-            <span class="badge">Innovation at Scale</span>
-            <h1>Architecting <br><span class="gradient-text">The Next Web</span></h1>
-            <p>High-fidelity frontend engineering and blockchain infrastructure research for modern protocols.</p>
+            <span class="badge">Decentralized Future</span>
+            <h1>Engineering <br><span class="gradient-text">Fluid Realities</span></h1>
+            <p>High-end frontend development and blockchain security automation for the modern web.</p>
             <div class="hero-btns">
-                <a href="#work" class="btn primary">View Work</a>
-                <a href="#contact" class="btn secondary">Inquire</a>
+                <div class="magnetic-wrap"><a href="#work" class="btn primary magnetic">Our Work</a></div>
+                <div class="magnetic-wrap"><a href="#contact" class="btn secondary magnetic">Start Project</a></div>
             </div>
         </div>
     </header>
 
-    <div class="marquee-container">
-        <div class="marquee">
-            <span>TYPESCRIPT</span><span>NEXT.JS</span><span>SOLIDITY</span><span>GSAP</span><span>THREE.JS</span>
-            <span>TYPESCRIPT</span><span>NEXT.JS</span><span>SOLIDITY</span><span>GSAP</span><span>THREE.JS</span>
+    <!-- 3. Interactive Tech Grid -->
+    <section class="tech-grid" id="tech">
+        <div class="grid-item reveal">
+            <div class="grid-glow"></div>
+            <h3>React / Next.js</h3>
+            <p>Complex state management and fluid UI.</p>
         </div>
-    </div>
-
-    <!-- Stats Section -->
-    <section class="stats reveal">
-        <div class="stat-item">
-            <h2 class="counter" data-target="15">0</h2>
-            <p>Active Ecosystems</p>
+        <div class="grid-item reveal">
+            <div class="grid-glow"></div>
+            <h3>Rust / Solidity</h3>
+            <p>Secure, gas-optimized protocol architecture.</p>
         </div>
-        <div class="stat-item">
-            <h2 class="counter" data-target="40">0</h2>
-            <p>Projects Launched</p>
-        </div>
-        <div class="stat-item">
-            <h2 class="counter" data-target="99">0</h2>
-            <p>Security Accuracy %</p>
+        <div class="grid-item reveal">
+            <div class="grid-glow"></div>
+            <h3>Three.js / GSAP</h3>
+            <p>Immersive 3D environments and animations.</p>
         </div>
     </section>
-
-    <!-- Work Gallery -->
-    <section class="work" id="work">
-        <div class="section-header reveal">
-            <h2>Selected Case Studies</h2>
-        </div>
-        <div class="project-grid">
-            <div class="project-card reveal">
-                <div class="project-img" style="background: linear-gradient(45deg, #121212, #1e1e1e);"></div>
-                <div class="project-info">
-                    <span>Defi Infrastructure</span>
-                    <h3>Drosera Network</h3>
-                </div>
-            </div>
-            <div class="project-card reveal">
-                <div class="project-img" style="background: linear-gradient(45deg, #1a1a1a, #0a0a0a);"></div>
-                <div class="project-info">
-                    <span>Portfolio Design</span>
-                    <h3>Seismic Systems</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer reveal">
-        <div class="footer-content">
-            <h2>Let's build something <span class="gradient-text">extraordinary.</span></h2>
-            <div class="social-grid">
-                <a href="#" class="social-link">Twitter / X</a>
-                <a href="#" class="social-link">Github</a>
-                <a href="#" class="social-link">Discord</a>
-            </div>
-        </div>
-    </footer>
 
     <script src="script.js"></script>
 </body>
