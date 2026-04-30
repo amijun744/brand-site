@@ -3,73 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CORE STUDIO | High-Fidelity Digital Architecture</title>
+    <title>CORE STUDIO | Digital Architecture</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="dark-theme">
 
-    <!-- 1. Preloader -->
+    <!-- 1. Cinematic Noise Overlay -->
+    <div class="noise"></div>
+
+    <!-- 2. Interactive Preloader -->
     <div class="preloader">
-        <div class="loader-content">
-            <span class="logo-load">CORE<span>STUDIO</span></span>
-            <div class="load-bar"></div>
+        <div class="loader-wrap">
+            <div class="load-text"><span>CORE</span> STUDIO</div>
+            <div class="progress-container"><div class="progress-fill"></div></div>
         </div>
     </div>
 
-    <!-- 2. Full-Screen Menu -->
+    <!-- 3. Full-Screen Menu -->
     <div class="menu-overlay">
-        <div class="menu-close">CLOSE</div>
+        <div class="menu-close">✕</div>
         <nav class="overlay-nav">
-            <a href="#services" class="menu-link"><span>01</span> EXPERTISE</a>
-            <a href="#work" class="menu-link"><span>02</span> CASE STUDIES</a>
-            <a href="#tech" class="menu-link"><span>03</span> TECH STACK</a>
-            <a href="#contact" class="menu-link"><span>04</span> CONTACT</a>
+            <a href="#work" class="menu-link">PORTFOLIO</a>
+            <a href="#tech" class="menu-link">TECH STACK</a>
+            <a href="#services" class="menu-link">SERVICES</a>
+            <a href="#contact" class="menu-link">CONTACT</a>
         </nav>
     </div>
 
-    <div class="progress-wrap"><div class="progress-bar"></div></div>
     <div class="cursor"></div>
-    <div class="blob"></div>
+    <div class="cursor-follower"></div>
 
     <nav class="navbar">
-        <div class="logo">CORE<span>STUDIO</span></div>
-        <div class="nav-right">
-            <div class="status-pill"><span class="dot"></span> Online</div>
-            <div class="menu-trigger">MENU</div>
+        <div class="logo">C<span>S</span></div>
+        <div class="nav-actions">
+            <div class="theme-toggle">●</div>
+            <div class="menu-btn">MENU</div>
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="hero-content reveal">
-            <span class="badge">Decentralized Future</span>
-            <h1>Engineering <br><span class="gradient-text">Fluid Realities</span></h1>
-            <p>High-end frontend development and blockchain security automation for the modern web.</p>
-            <div class="hero-btns">
-                <div class="magnetic-wrap"><a href="#work" class="btn primary magnetic">Our Work</a></div>
-                <div class="magnetic-wrap"><a href="#contact" class="btn secondary magnetic">Start Project</a></div>
+    <main id="smooth-wrapper">
+        <header class="hero">
+            <div class="hero-content">
+                <span class="reveal-text subtitle">Est. 2026 — Digital Excellence</span>
+                <h1 class="split-text">Pioneering <br><span class="accent">Architecture.</span></h1>
+                <p class="reveal-text">Specializing in high-performance frontend engineering and decentralized security for the global blockchain ecosystem.</p>
+                <div class="hero-footer">
+                    <div class="scroll-indicator"><span>SCROLL</span><div class="line"></div></div>
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <!-- 3. Interactive Tech Grid -->
-    <section class="tech-grid" id="tech">
-        <div class="grid-item reveal">
-            <div class="grid-glow"></div>
-            <h3>React / Next.js</h3>
-            <p>Complex state management and fluid UI.</p>
-        </div>
-        <div class="grid-item reveal">
-            <div class="grid-glow"></div>
-            <h3>Rust / Solidity</h3>
-            <p>Secure, gas-optimized protocol architecture.</p>
-        </div>
-        <div class="grid-item reveal">
-            <div class="grid-glow"></div>
-            <h3>Three.js / GSAP</h3>
-            <p>Immersive 3D environments and animations.</p>
-        </div>
-    </section>
+        <!-- 4. Interactive Services Bento -->
+        <section class="services" id="services">
+            <div class="bento-grid">
+                <div class="bento-card reveal" data-tilt>
+                    <div class="card-num">01</div>
+                    <h3>UI/UX Design</h3>
+                    <p>Building glassmorphic interfaces with CSS-focused precision.</p>
+                </div>
+                <div class="bento-card wide reveal" data-tilt>
+                    <div class="card-num">02</div>
+                    <h3>Blockchain Infra</h3>
+                    <p>Research and security automation for high-stakes protocols.</p>
+                </div>
+                <div class="bento-card reveal" data-tilt>
+                    <div class="card-num">03</div>
+                    <h3>Brand Strategy</h3>
+                    <p>Defining visual identities in the DeFi space.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-wrap">
+                <h2>READY TO <br>START?</h2>
+                <a href="mailto:hello@corestudio.com" class="magnetic-btn">GET IN TOUCH</a>
+            </div>
+        </footer>
+    </main>
 
     <script src="script.js"></script>
 </body>

@@ -1,50 +1,48 @@
-// 1. Preloader Close
+// 1. Loader Logic
 window.addEventListener('load', () => {
+    document.querySelector('.progress-fill').style.width = '100%';
     setTimeout(() => {
         document.querySelector('.preloader').style.transform = 'translateY(-100%)';
-    }, 1800);
+    }, 1600);
 });
 
-// 2. Menu Logic
-const menuTrigger = document.querySelector('.menu-trigger');
-const menuClose = document.querySelector('.menu-close');
-const overlay = document.querySelector('.menu-overlay');
+// 2. Advanced Cursor
+const cursor = document.querySelector('.cursor');
+const follower = document.querySelector('.cursor-follower');
 
-menuTrigger.onclick = () => overlay.classList.add('active');
-menuClose.onclick = () => overlay.classList.remove('active');
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    follower.style.left = e.clientX - 20 + 'px';
+    follower.style.top = e.clientY - 20 + 'px';
+});
 
-// 3. Magnetic Button Effect
-const magneticElements = document.querySelectorAll('.magnetic');
-magneticElements.forEach(el => {
-    el.addEventListener('mousemove', (e) => {
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+// 3. 3D Tilt Effect
+document.querySelectorAll('[data-tilt]').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `perspective(1000px) rotateX(${y * -20}deg) rotateY(${x * 20}deg) scale3d(1.02, 1.02, 1.02)`;
     });
-    el.addEventListener('mouseleave', () => {
-        el.style.transform = `translate(0px, 0px)`;
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
     });
 });
 
-// 4. Grid Glow Follower
-document.querySelectorAll('.grid-item').forEach(item => {
-    item.onmousemove = (e) => {
-        const glow = item.querySelector('.grid-glow');
-        const rect = item.getBoundingClientRect();
-        glow.style.left = `${e.clientX - rect.left - 50}px`;
-        glow.style.top = `${e.clientY - rect.top - 50}px`;
-        glow.style.opacity = '0.3';
-    };
-});
+// 4. Menu Overlay Toggle
+const menuBtn = document.querySelector('.menu-btn');
+const closeBtn = document.querySelector('.menu-close');
+const menu = document.querySelector('.menu-overlay');
 
-// 5. Native Smooth Scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.onclick = function(e) {
-        e.preventDefault();
-        overlay.classList.remove('active');
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    };
-});
+menuBtn.onclick = () => menu.style.transform = 'translateX(0)';
+closeBtn.onclick = () => menu.style.transform = 'translateX(100%)';
+
+// 5. Scroll Reveal
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('active');
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
