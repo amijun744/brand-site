@@ -1,36 +1,50 @@
+// 1. Scroll Progress Bar
+window.onscroll = () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.querySelector(".progress-bar").style.width = scrolled + "%";
+};
+
+// 2. Custom Cursor Logic
 const cursor = document.querySelector('.cursor');
-
-// Smooth Cursor movement
 document.addEventListener('mousemove', (e) => {
-    cursor.style.transform = `translate3d(${e.clientX - 7}px, ${e.clientY - 7}px, 0)`;
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
 });
 
-// Cursor Interactions
-document.querySelectorAll('a, .bento-item, .btn').forEach(item => {
-    item.addEventListener('mouseenter', () => {
-        cursor.style.transform += ' scale(4)';
-        cursor.style.background = 'white';
-    });
-    item.addEventListener('mouseleave', () => {
-        cursor.style.transform = cursor.style.transform.replace(' scale(4)', ' scale(1)');
-        cursor.style.background = 'var(--accent)';
-    });
+document.querySelectorAll('a, .project-card, .btn').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(6)');
+    el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
 });
 
-// Scroll Reveal Observer
+// 3. Stat Counters
+const counters = document.querySelectorAll('.counter');
+const startCounters = () => {
+    counters.forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const speed = target / 100;
+            if (count < target) {
+                counter.innerText = Math.ceil(count + speed);
+                setTimeout(updateCount, 20);
+            } else {
+                counter.innerText = target;
+            }
+        };
+        updateCount();
+    });
+};
+
+// 4. Intersection Observer for Reveal & Stats
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('active');
+            if(entry.target.classList.contains('stats')) startCounters();
         }
     });
-}, { threshold: 0.15 });
+}, { threshold: 0.2 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Hero Parallax effect
-document.addEventListener('mousemove', (e) => {
-    const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-    const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-    document.querySelector('.hero-content').style.transform = `translate(${moveX}px, ${moveY}px)`;
-});
