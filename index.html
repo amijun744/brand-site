@@ -3,85 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CORE STUDIO | Digital Architecture</title>
+    <title>VOID ARCHIVE | System 01</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
 </head>
-<body class="dark-theme">
+<body>
+    <!-- Engine Canvas -->
+    <canvas id="starfield"></canvas>
+    
+    <div class="vignette"></div>
+    <div class="scanlines"></div>
 
-    <!-- 1. Cinematic Noise Overlay -->
-    <div class="noise"></div>
+    <div class="cursor-void"></div>
 
-    <!-- 2. Interactive Preloader -->
-    <div class="preloader">
-        <div class="loader-wrap">
-            <div class="load-text"><span>CORE</span> STUDIO</div>
-            <div class="progress-container"><div class="progress-fill"></div></div>
+    <nav class="nav-system">
+        <div class="system-time" id="clock">00:00:00</div>
+        <div class="logo-wrap">
+            <span class="glitch" data-text="CORE_STUDIO">CORE_STUDIO</span>
         </div>
-    </div>
-
-    <!-- 3. Full-Screen Menu -->
-    <div class="menu-overlay">
-        <div class="menu-close">✕</div>
-        <nav class="overlay-nav">
-            <a href="#work" class="menu-link">PORTFOLIO</a>
-            <a href="#tech" class="menu-link">TECH STACK</a>
-            <a href="#services" class="menu-link">SERVICES</a>
-            <a href="#contact" class="menu-link">CONTACT</a>
-        </nav>
-    </div>
-
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-
-    <nav class="navbar">
-        <div class="logo">C<span>S</span></div>
-        <div class="nav-actions">
-            <div class="theme-toggle">●</div>
-            <div class="menu-btn">MENU</div>
-        </div>
+        <div class="system-status">LINK_ESTABLISHED</div>
     </nav>
 
-    <main id="smooth-wrapper">
-        <header class="hero">
-            <div class="hero-content">
-                <span class="reveal-text subtitle">Est. 2026 — Digital Excellence</span>
-                <h1 class="split-text">Pioneering <br><span class="accent">Architecture.</span></h1>
-                <p class="reveal-text">Specializing in high-performance frontend engineering and decentralized security for the global blockchain ecosystem.</p>
-                <div class="hero-footer">
-                    <div class="scroll-indicator"><span>SCROLL</span><div class="line"></div></div>
-                </div>
-            </div>
-        </header>
-
-        <!-- 4. Interactive Services Bento -->
-        <section class="services" id="services">
-            <div class="bento-grid">
-                <div class="bento-card reveal" data-tilt>
-                    <div class="card-num">01</div>
-                    <h3>UI/UX Design</h3>
-                    <p>Building glassmorphic interfaces with CSS-focused precision.</p>
-                </div>
-                <div class="bento-card wide reveal" data-tilt>
-                    <div class="card-num">02</div>
-                    <h3>Blockchain Infra</h3>
-                    <p>Research and security automation for high-stakes protocols.</p>
-                </div>
-                <div class="bento-card reveal" data-tilt>
-                    <div class="card-num">03</div>
-                    <h3>Brand Strategy</h3>
-                    <p>Defining visual identities in the DeFi space.</p>
-                </div>
+    <main class="viewport">
+        <section class="hero-void">
+            <div class="coordinates">LAT: 9.0192 / LONG: 38.7525</div>
+            <h1 class="scramble-text" data-value="ARCHITECTING THE UNSEEN">ARCHITECTING THE UNSEEN</h1>
+            <p class="mono-sub">Propelling digital infrastructure into the deep-tech stratosphere.</p>
+            
+            <div class="action-orbit">
+                <div class="orbit-circle"></div>
+                <button class="launch-btn">INITIATE_CONTACT</button>
             </div>
         </section>
 
-        <footer class="footer">
-            <div class="footer-wrap">
-                <h2>READY TO <br>START?</h2>
-                <a href="mailto:hello@corestudio.com" class="magnetic-btn">GET IN TOUCH</a>
-            </div>
-        </footer>
+        <!-- Dynamic Data Feed -->
+        <div class="data-feed">
+            <div class="feed-item"><span>//</span> DEF_SEC_ACTIVE</div>
+            <div class="feed-item"><span>//</span> UI_FLUID_ENGINE_LOADED</div>
+            <div class="feed-item"><span>//</span> BLOCKCHAIN_SYNC_COMPLETE</div>
+        </div>
     </main>
+
+    <!-- Gooey Filter SVG -->
+    <svg style="display:none;">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+            </filter>
+        </defs>
+    </svg>
 
     <script src="script.js"></script>
 </body>

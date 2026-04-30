@@ -1,48 +1,67 @@
-// 1. Loader Logic
-window.addEventListener('load', () => {
-    document.querySelector('.progress-fill').style.width = '100%';
-    setTimeout(() => {
-        document.querySelector('.preloader').style.transform = 'translateY(-100%)';
-    }, 1600);
-});
+// 1. Text Scrambler Engine
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+document.querySelector(".scramble-text").onmouseover = event => {
+    let iteration = 0;
+    const interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+            .split("")
+            .map((letter, index) => {
+                if(index < iteration) return event.target.dataset.value[index];
+                return letters[Math.floor(Math.random() * 36)];
+            })
+            .join("");
+        if(iteration >= event.target.dataset.value.length) clearInterval(interval);
+        iteration += 1 / 3;
+    }, 30);
+};
 
-// 2. Advanced Cursor
-const cursor = document.querySelector('.cursor');
-const follower = document.querySelector('.cursor-follower');
+// 2. Starfield Engine (Canvas)
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let stars = [];
 
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    follower.style.left = e.clientX - 20 + 'px';
-    follower.style.top = e.clientY - 20 + 'px';
-});
+function initStars() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    stars = [];
+    for (let i = 0; i < 400; i++) {
+        stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            z: Math.random() * canvas.width,
+            o: Math.random()
+        });
+    }
+}
 
-// 3. 3D Tilt Effect
-document.querySelectorAll('[data-tilt]').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        card.style.transform = `perspective(1000px) rotateX(${y * -20}deg) rotateY(${x * 20}deg) scale3d(1.02, 1.02, 1.02)`;
+function updateStars() {
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+    
+    stars.forEach(s => {
+        s.z -= 2;
+        if (s.z <= 0) s.z = canvas.width;
+        let sx = (s.x - canvas.width/2) * (canvas.width/s.z) + canvas.width/2;
+        let sy = (s.y - canvas.height/2) * (canvas.width/s.z) + canvas.height/2;
+        let size = (1 - s.z/canvas.width) * 3;
+        ctx.beginPath();
+        ctx.arc(sx, sy, size, 0, Math.PI*2);
+        ctx.fill();
     });
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
-    });
+    requestAnimationFrame(updateStars);
+}
+
+// 3. System Clock
+setInterval(() => {
+    document.getElementById('clock').innerText = new Date().toLocaleTimeString();
+}, 1000);
+
+initStars();
+updateStars();
+
+// 4. Cursor Follower
+document.addEventListener('mousemove', e => {
+    document.querySelector('.cursor-void').style.left = e.clientX - 20 + 'px';
+    document.querySelector('.cursor-void').style.top = e.clientY - 20 + 'px';
 });
-
-// 4. Menu Overlay Toggle
-const menuBtn = document.querySelector('.menu-btn');
-const closeBtn = document.querySelector('.menu-close');
-const menu = document.querySelector('.menu-overlay');
-
-menuBtn.onclick = () => menu.style.transform = 'translateX(0)';
-closeBtn.onclick = () => menu.style.transform = 'translateX(100%)';
-
-// 5. Scroll Reveal
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting) entry.target.classList.add('active');
-    });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
